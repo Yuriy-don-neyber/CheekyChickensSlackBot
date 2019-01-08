@@ -1,60 +1,73 @@
-# easy-peasy-bot
+# 🌟 Starbot
 
-## The story of a (Slack)bot
+![Starbot](https://heroku-www-files.s3.amazonaws.com/starbot/starbot-banner.png)
 
-A (not so) long time ago, a team called Tiny Speck built an app to communicate with each other as they worked.
-In their daily work, they found that there were some mindless tasks they had to do over and over. These things pulled them out of important conversations, which slowed them down.
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
-So, they built a special user in their messaging app: not a human user, but a digital user. The digital user took on some of their mindless tasks and integrated the other apps they used into their conversations.
+Starbot is [GitHub's trending open-source](https://github.com/trending/) page, reincarnated as a Slack bot. It is also the sample referenced in the ["How to Deploy Your Slack Bots to Heroku"](https://blog.heroku.com/archives/2016/3/9/how-to-deploy-your-slack-bots-to-heroku) blog post.
 
-Eventually their app was named Slack and their digital user, Slackbot.
-And lo, you can build a Slack Bot, too! With our API and this nifty repository, a bot for your team can be all yours.
 
-# Using Botkit for Custom Bots
-1. Fork this project.
-2. Open up your favorite terminal app, and clone your new repository to your local computer.
-3. This is a Node.js project, so you’ll need to install the various dependencies by running:
-    npm install
-4. Edit `package.json` to give your bot a name and update the GitHub URLs to reflect the location of your fork in GitHub.
-5. Go to https://my.slack.com/apps/new/A0F7YS25R-bots and pick a name for your new bot.
-6. Once you’ve clicked “Add integration,” you’ll be taken to a page where you can further customize your bot. Of importance is the bot token—take note of it now.
-7. Once you have the token, you can run your bot easily:
+### Supported `/slash` commands
 
-    ```bash
-    TOKEN=xoxb-your-token-here npm start
-    ```
+Create a `/starbot` [custom slash command](https://api.slack.com/slash-commands), using the URL: `{app-name}.herokuapp.com/commands/starbot`. *Take note of the provided `token`, this is used to verify requests come from Slack.*
 
-    Your bot will now attempt to log into your team, and you should be able talk to it. Try telling your new bot “hello”. It should say “Hello!” back!
+- `/starbot` or `/starbot help` - List available commands
+- `/starbot repos` - Display trending GitHub projects
 
-8. Botkit is structured around event listeners. The most important is the “hear” listener, which kicks off an action when your bot hears something. `index.js` contains the core logic, and has this event listener:
+### Install
 
-    ```javascript
-    controller.hears('hello','direct_message', function(bot,message) {
-        bot.reply(message, 'Hello!');
-    });
-    ```
+```shell
+$ npm install
+```
 
-    This event handler is triggered when the bot receives a direct message from a user that contains the word “hello.”
+### Copy `.env-example` to `.env`
 
-    The bot responds in the direct message with, “Hello!”
+```shell
+$ cp .env-example .env
+```
 
-9. You can listen to any kind of message or you can configure your bot to only listen to direct messages or specific @-mentions of your bot. It’s up to you! To start let’s re-write the event listener to be more  flexible about the greetings it is listening for:
-    ```javascript
-    controller.hears(['hello', 'hi', 'greetings'], ['direct_mention', 'mention', 'direct_message'], function(bot,message) {
-         bot.reply(message, 'Hello!');
-     });
-    ```
+### Configure
 
-    Now our bot will respond any time it sees “hello,” “hi,” or “greetings” in either a DM or a message that @-mentions the bot. (Don’t forget to restart your bot after each edit!)
+```shell
+SLACK_TEAM_TOKEN=xoxb...8WRqKWx
+NODE_ENV=development
+PORT=3000
+```
+### Run
 
-## Hurrah! Welcome to Level 2
+```shell
+$ npm start
 
-You’ve built your first bot in Slack, and it’s not just a Hello World bot—it’s a Hi World and Greetings World bot too!
+🚀 Starbot LIVES on PORT 3000 🚀
+```
 
-At this point you will probably want to start doing more sophisticated things, like making requests to external services, so your bot can respond with timely and useful information (depending on what your bot does, of course). There’s a lot more to Botkit than this! You can learn more about Botkit’s awesome features by simply perusing the [Botkit documentation](http://howdy.ai/botkit/docs/).
+Visit [localhost:3000](http://localhost:3000).
 
-Once you’ve got your bot developed to your liking, it is ready to be deployed to your own hosting framework. No other configuration is necessary, except storing the token and desired port in environment variables.
+### Deploy
 
-# Using Botkit for Bot Apps
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-You can find full instructions for building a bot app with this repository at https://medium.com/slack-developer-blog/easy-peasy-bots-getting-started-96b65e6049bf#.4ay2fjf32
+_Or with the [Heroku Toolbelt](https://toolbelt.heroku.com)_
+
+```shell
+$ heroku create {optional-app-name}
+
+Creating app... done, stack is cedar-14
+https://blooming-scrubland-64464.herokuapp.com/
+
+$ git push heroku master
+...
+remote: -----> Node.js app detected
+...
+remote:        https://blooming-scrubland-64464.herokuapp.com/ deployed to Heroku
+...
+To https://git.heroku.com/blooming-scrubland-64464.git
+ * [new branch]      master -> master
+
+$ heroku open
+```
+
+### License
+
+**[This project is licensed under the terms of the MIT license.](http://license-me.herokuapp.com)**
+ -- [_Need your own? There's a button for that :wink:_](https://github.com/mattcreager/license)
