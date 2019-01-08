@@ -1,0 +1,32 @@
+{
+  "name": "cheeky-chickens-bot",
+  "version": "1.0.0",
+  "description": "Standup bot with Cake.hr API support.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuriydon/easy-peasy-bot"
+  },
+  "keywords": [
+    "slack",
+    "bot"
+  ],
+  "author": "Authored by cheeky-chickens team.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuriydon/easy-peasy-bot/issues"
+  },
+  "homepage": "",
+  "engines": {
+    "node": "5.1.1"
+  },
+  "dependencies": {
+    "botkit": "^0.7.0",
+    "botkit-storage-mongo": "^1.0.2",
+    "mongodb": "^1.4.39"
+  }
+}
